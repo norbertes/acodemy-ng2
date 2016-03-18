@@ -1,0 +1,37 @@
+{
+  "name": "acodemy-ng2",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typings install",
+    "webpack": "node_modules/.bin/webpack",
+    "webpack-server": "node_modules/.bin/webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 7070 --content-base src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/norbertes/acodemy-ng2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/norbertes/acodemy-ng2/issues"
+  },
+  "homepage": "https://github.com/norbertes/acodemy-ng2#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.10.0",
+    "ts-loader": "^0.8.1",
+    "typescript": "^1.8.9",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "angular2": "^2.0.0-beta.10",
+    "es6-promise": "^3.1.2",
+    "es6-shim": "^0.33.13",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.2",
+    "zone.js": "^0.6.4"
+  }
+}
