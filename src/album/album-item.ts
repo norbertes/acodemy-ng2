@@ -7,9 +7,8 @@ import { Component } from 'angular2/core';
       class="tile thumb-m"
       title="Album"
       href="album/index.html">
-       <img
-          src="{{image}}"
-          width="128">
+       <img src="{{image}}"
+            width="128">
        {{ name }}
     </a>
   `
