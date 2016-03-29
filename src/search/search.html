@@ -1,44 +1,49 @@
 <navbar></navbar>
 
-<section class="tiles-section">
+<section class="tiles-section"
+         *ngIf="searchResults?.albums?.items?.length">
   <header>
     <h1>Albums</h1>
-    <h2>156 found</h2>
+    <h2>{{searchResults.albums.items.length}} found</h2>
   </header>
   <div class="tiles-container">
-    <album-item></album-item>
-    <a class="tile thumb-m" title="Album" href="album/index.html"></a>
-    <a class="tile thumb-m" title="Album" href="album/index.html"></a>
-    <a class="tile thumb-m" title="Album" href="album/index.html"></a>
-    <a class="tile thumb-m" title="Album" href="album/index.html"></a>
-    <a class="tile thumb-m" title="Album" href="album/index.html"></a>
-    <a class="tile thumb-m" title="Album" href="album/index.html"></a>
+    <album-item
+      *ngFor="#album of searchResults.albums.items"
+      [item]="album">
+    </album-item>
   </div>
 </section>
 
-<section class="tiles-section">
+<section class="tiles-section"
+         *ngIf="searchResults?.artists?.items?.length">
   <header>
     <h1>Artists</h1>
-    <h2>32 found</h2>
+    <h2>{{searchResults.artists.items.length}} found</h2>
   </header>
   <div class="tiles-container">
-    <a class="tile thumb-m" title="Artist" href="artist/index.html"></a>
-    <a class="tile thumb-m" title="Artist" href="artist/index.html"></a>
-    <a class="tile thumb-m" title="Artist" href="artist/index.html"></a>
-    <a class="tile thumb-m" title="Artist" href="artist/index.html"></a>
-    <a class="tile thumb-m" title="Artist" href="artist/index.html"></a>
-    <a class="tile thumb-m" title="Artist" href="artist/index.html"></a>
+    <artist-item
+      *ngFor="#artist of searchResults.artists.items"
+    >
+      <img *ngIf="artist.images.length"
+           src="{{artist.images[0].url}}"
+           width="128">
+      {{ artist.name }}
+    </artist-item>
   </div>
 </section>
 
-<section class="table-section">
+<section class="table-section"
+         *ngIf="searchResults?.tracks?.items?.length">
   <header>
     <h1>Tracks</h1>
-    <h2>1788 found</h2>
+    <h2>{{searchResults.tracks.items.length}} found</h2>
   </header>
   <table class="tracks-table">
-    <tr>
-      <track-item></track-item>
+    <tr
+      *ngFor="#track of searchResults.tracks.items"
+      track-item
+      item="{abc:'dev'}"
+    >
     </tr>
     <tr>
       <td>
