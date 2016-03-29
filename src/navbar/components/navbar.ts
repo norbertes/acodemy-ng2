@@ -1,4 +1,8 @@
-import { Component } from 'angular2/core';
+import {
+  Component,
+  Output,
+  EventEmitter
+} from 'angular2/core';
 
 @Component({
   selector: 'navbar',
@@ -25,9 +29,11 @@ import { Component } from 'angular2/core';
   `
 })
 export class Navbar {
+  @Output() filterPhrase = new EventEmitter();
   phrase = '';
 
   updatePhrase(phrase) {
     this.phrase = phrase;
+    this.filterPhrase.emit(this.phrase);
   }
 }

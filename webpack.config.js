@@ -7,6 +7,7 @@ module.exports = {
       app: './src/index.ts',
       vendor: './src/vendor.ts',
     },
+
     output: {
       path: './dist',
       filename: 'bundle.js',
