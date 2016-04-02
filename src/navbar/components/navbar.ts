@@ -1,4 +1,6 @@
 import { Control } from 'angular2/common';
+import { ROUTER_DIRECTIVES, RouteParams, Location } from 'angular2/router';
+import { URLSearchParams } from 'angular2/http';
 import {
   Component,
   Output,
@@ -9,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
+  directives: [ROUTER_DIRECTIVES],
   selector: 'navbar',
   template: `
     <nav class="app-navbar initialized"
@@ -20,6 +23,7 @@ import 'rxjs/add/operator/debounceTime';
       </div>
       <div class="app-search">
         <input #searchbox
+        id="searchbox"
                type="text"
                placeholder="search..."
                [ngFormControl]="term">
@@ -34,17 +38,26 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class Navbar {
   phrase:string = '';
-  term = new Control();
+  term:Control = new Control();
   @Output() filterPhrase = new EventEmitter();
 
-  constructor() {
+  constructor(
+    private location: Location,
+    private params: RouteParams
+  ) {
+    this.phrase = this.params.get('query') || '';
     this.term.valueChanges
              .debounceTime(500)
-             .subscribe(value => this.updatePhrase(value));
+             .subscribe((value) => this.updatePhrase(value));
+  }
+
+  ngAfterViewInit() {
+    document.querySelector('#searchbox').value = this.phrase;
   }
 
   updatePhrase(phrase:string) {
     this.phrase = phrase;
+    this.location.go(`?query=${phrase}`);
     this.filterPhrase.emit(this.phrase);
   }
 }
