@@ -4,7 +4,10 @@ import { Pipe } from 'angular2/core';
   name: 'phraseFilter'
 })
 export class PhraseFilter {
-  transform(collection: Object[], [field = 'name', phrase = '']: [string, string]) {
+  transform(
+    collection: Object[],
+    [field = 'name', phrase = '']: [string, string]
+  ) {
     return collection.filter( (el) => el[field].toLowerCase().indexOf(phrase) !== -1);
   }
 }

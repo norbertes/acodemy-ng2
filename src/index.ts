@@ -25,21 +25,26 @@ import { OrderBy } from './shared/pipes/orderBy.ts';
   templateUrl: './search/search.html'
 })
 class App {
-  searchResults;
+  searchResults: Object;
   filterPhrase: string;
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    this.searchService.getResults()
+    this.getData();
+  }
+
+  updatePhrase(phrase:string) {
+    this.filterPhrase = phrase;
+    this.getData(phrase);
+  }
+
+  getData(phrase:string = 'transistor') {
+    this.searchService.getResults(phrase)
     .subscribe(
       response => this.searchResults = response,
       error => console.log(error)
     );
-  }
-
-  updatePhrase(phrase) {
-    this.filterPhrase = phrase;
   }
 };
 
