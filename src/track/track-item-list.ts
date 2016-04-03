@@ -3,20 +3,18 @@ import {
   Input,
 } from 'angular2/core';
 
+import { PlayButton } from '../shared/components/play-button';
 import { Duration } from '../shared/pipes/duration';
 
 @Component({
   selector: 'track-item-list',
+  directives: [PlayButton],
   pipes: [Duration],
   template: `
   <table class="tracks-table">
     <tr *ngFor="#track of tracks">
       <td>
-        <button class="play-button">
-          <div class="icon-background">
-            <i class="fa fa-play"></i>
-          </div>
-        </button>
+        <play-button [url]="track.preview_url"></play-button>
       </td>
       <td><a href="album/index.html">{{ track.name | uppercase }}</a></td>
       <td><a href="album/index.html">{{ track.album.name }}</a></td>
