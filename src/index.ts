@@ -17,6 +17,7 @@ import {
 
 import { SearchService } from './search/search.service.ts';
 import { Search } from './search/search.component.ts';
+import { Album } from './album/album';
 
 @Component({
   selector: 'app',
@@ -31,6 +32,10 @@ import { Search } from './search/search.component.ts';
    name: 'Search',
    component: Search,
    useAsDefault: true
+ }, {
+   path: '/album/:id',
+   name: 'Album',
+   component: Album
  }
 ])
 class App {};
